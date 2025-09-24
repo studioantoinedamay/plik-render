@@ -11,7 +11,7 @@ RUN chmod +x /usr/local/bin/plikd
 # Copier le fichier de configuration
 COPY plikd.cfg /plikd.cfg
 
-# Copier la webapp buildée
+# Copier la WebApp compilée
 COPY webapp/dist /webapp/dist
 
 # Exposer le port
