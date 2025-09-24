@@ -15,8 +15,8 @@ COPY plikd.cfg /plikd.cfg
 COPY plikd.cfg /plikd.cfg
 COPY rclone.conf /root/.config/rclone/rclone.conf
 
-# Copier la WebApp compilée
-COPY webapp/dist /webapp/dist
+# Copier le dossier webapp/dist pour l’interface
+COPY plik/webapp/dist /webapp/dist
 
 # Exposer le port
 EXPOSE 8080
