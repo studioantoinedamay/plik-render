@@ -1,0 +1,7 @@
+host = :8080
+backend_type = rclone
+backend_path = mega:PlikUploads
+log_level = info
+max_file_size = 500M
+
+
