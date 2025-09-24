@@ -1,8 +1,4 @@
-# On part de l'environnement Ubuntu fourni par Render
-# pas de FROM nécessaire
 
-# Installer les dépendances nécessaires
-RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Copier le binaire plikd qui est déjà dans le repo
 COPY plikd /usr/local/bin/plikd
