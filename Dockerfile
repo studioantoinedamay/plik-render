@@ -1,5 +1,5 @@
-# Base image Ubuntu
-FROM ghcr.io/library/ubuntu:22.04
+# Image de base fournie par Render
+FROM ubuntu:22.04
 
 # Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
