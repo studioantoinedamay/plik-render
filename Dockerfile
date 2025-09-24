@@ -1,5 +1,5 @@
-# Image de base fournie par Render
-FROM ubuntu:22.04
+# Render’s prebuilt Ubuntu 22.04 image
+FROM render/ubuntu:22.04
 
 # Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
