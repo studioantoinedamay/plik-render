@@ -1,20 +1,20 @@
-# Utilise une image Ubuntu récente
+# Base image Ubuntu
 FROM ubuntu:22.04
 
 # Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
-# Copier ton binaire plikd déjà présent à la racine du repo
+# Copier le binaire plikd qui est déjà dans le repo
 COPY plikd /usr/local/bin/plikd
 RUN chmod +x /usr/local/bin/plikd
 
 # Copier le fichier de configuration
-COPY server/plikd.cfg /plikd.cfg
+COPY plikd.cfg /plikd.cfg
 
-# Copier la webapp buildée (dist)
+# Copier la webapp buildée
 COPY webapp/dist /webapp/dist
 
-# Exposer le port par défaut
+# Exposer le port
 EXPOSE 8080
 
 # Lancer plikd avec la configuration
