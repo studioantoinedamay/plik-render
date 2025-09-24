@@ -1,5 +1,5 @@
-# Render’s prebuilt Ubuntu 22.04 image
-FROM render/ubuntu:22.04
+# On part de l'environnement Ubuntu fourni par Render
+# pas de FROM nécessaire
 
 # Installer les dépendances nécessaires
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
