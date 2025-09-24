@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y curl tar ca-certificates
@@ -31,7 +30,3 @@ EXPOSE 8080
 
 # Commande de lancement
 CMD ["/usr/local/bin/plikd", "--config", "/plikd.cfg"]
-
-
-
->>>>>>> f459004 (Ajout webapp et config Plik)
