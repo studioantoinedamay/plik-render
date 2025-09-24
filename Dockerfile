@@ -11,7 +11,6 @@ EXPOSE 8080
 
 CMD ["/usr/local/bin/plikd", "--config", "/plikd.cfg"]
 
-=======
 # Image de base Linux
 FROM ubuntu:22.04
 
