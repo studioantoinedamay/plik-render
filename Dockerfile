@@ -11,6 +11,10 @@ RUN chmod +x /usr/local/bin/plikd
 # Copier le fichier de configuration
 COPY plikd.cfg /plikd.cfg
 
+# Copier la config Plik et rclone
+COPY plikd.cfg /plikd.cfg
+COPY rclone.conf /root/.config/rclone/rclone.conf
+
 # Copier la WebApp compilée
 COPY webapp/dist /webapp/dist
 
