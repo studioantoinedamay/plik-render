@@ -4,16 +4,10 @@
 FROM ubuntu:22.04
 
 
-# Installer les dépendances nécessaires
+# Installer rclone et dépendances
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        curl \
-        wget \
-        tar \
-        unzip \
-        rclone \
-        ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    apt-get install -y rclone ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copier le binaire plikd qui est déjà dans le repo
 COPY plikd /usr/local/bin/plikd
