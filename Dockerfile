@@ -19,14 +19,14 @@ COPY plikd.cfg /plikd.cfg
 # Copier les fichiers de configuration
 COPY plikd.cfg /plikd.cfg
 
-RUN mkdir -p /root/.config/rclone && \
-    echo "[mega]" > /root/.config/rclone/rclone.conf && \
+# Créer le dossier pour rclone
+RUN mkdir -p /root/.config/rclone
+
+# Générer le rclone.conf à partir des variables d'environnement
+RUN echo "[mega]" > /root/.config/rclone/rclone.conf && \
     echo "type = mega" >> /root/.config/rclone/rclone.conf && \
     echo "user = ${RCLONE_MEGA_USER}" >> /root/.config/rclone/rclone.conf && \
     echo "pass = ${RCLONE_MEGA_PASS}" >> /root/.config/rclone/rclone.conf
-
-# Copier le fichier rclone.conf
-COPY rclone.conf /root/.config/rclone/rclone.conf
 
 # Copier le dossier webapp/dist pour l’interface
 COPY webapp/dist /webapp/dist
