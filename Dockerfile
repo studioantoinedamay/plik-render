@@ -1,31 +1,27 @@
-# Base image
+# Image de base Ubuntu
 FROM ubuntu:22.04
 
-# Installer rclone et ca-certificates
+# Installer rclone et dépendances
 RUN apt-get update && \
     apt-get install -y rclone ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-# Copier le binaire plikd
+# Copier le binaire Plik
 COPY plikd /usr/local/bin/plikd
 RUN chmod +x /usr/local/bin/plikd
 
-# Copier le fichier de config Plik
+# Copier le fichier de configuration Plik
 COPY plikd.cfg /plikd.cfg
 
-# Créer le dossier pour rclone
-RUN mkdir -p /root/.config/rclone
-
-# Générer rclone.conf au démarrage
-ENV RCLONE_CONF="/root/.config/rclone/rclone.conf"
-CMD echo "[mega]" > $RCLONE_CONF && \
-    echo "type = mega" >> $RCLONE_CONF && \
-    echo "user = ${RCLONE_MEGA_USER}" >> $RCLONE_CONF && \
-    echo "pass = ${RCLONE_MEGA_PASS}" >> $RCLONE_CONF && \
-    /usr/local/bin/plikd --config /plikd.cfg
-
-# Copier l'interface web
+# Copier le dossier webapp pour l'interface
 COPY webapp/dist /webapp/dist
+
+# Copier l'entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Exposer le port
 EXPOSE 8080
+
+# Utiliser l'entrypoint pour générer rclone.conf et lancer Plik
+ENTRYPOINT ["/entrypoint.sh"]
