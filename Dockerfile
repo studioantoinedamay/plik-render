@@ -17,7 +17,7 @@ COPY plikd.cfg /plikd.cfg
 # Copier les fichiers de configuration
 COPY plikd.cfg /plikd.cfg
 # Copier le fichier rclone.conf
-COPY rclone.conf
+COPY rclone.conf /root/.config/rclone/rclone.conf
 
 # Copier le dossier webapp/dist pour l’interface
 COPY webapp/dist /webapp/dist
