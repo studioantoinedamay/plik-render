@@ -1,38 +1,27 @@
-# Image de base fournie par Render
-
-
+# Image de base
 FROM ubuntu:22.04
-
 
 # Installer rclone et dépendances
 RUN apt-get update && \
-    apt-get install -y rclone ca-certificates && \
+    apt-get install -y rclone ca-certificates curl unzip && \
     rm -rf /var/lib/apt/lists/*
 
-# Copier le binaire plikd qui est déjà dans le repo
+# Copier le binaire plikd
 COPY plikd /usr/local/bin/plikd
 RUN chmod +x /usr/local/bin/plikd
 
-# Copier le fichier de configuration
+# Copier le fichier de configuration Plik
 COPY plikd.cfg /plikd.cfg
 
-# Copier les fichiers de configuration
-COPY plikd.cfg /plikd.cfg
-
-# Créer le dossier pour rclone
-RUN mkdir -p /root/.config/rclone
-
-# Générer le rclone.conf à partir des variables d'environnement
-RUN echo "[mega]" > /root/.config/rclone/rclone.conf && \
-    echo "type = mega" >> /root/.config/rclone/rclone.conf && \
-    echo "user = ${RCLONE_MEGA_USER}" >> /root/.config/rclone/rclone.conf && \
-    echo "pass = ${RCLONE_MEGA_PASS}" >> /root/.config/rclone/rclone.conf
-
-# Copier le dossier webapp/dist pour l’interface
+# Copier l'interface web
 COPY webapp/dist /webapp/dist
+
+# Copier le script de démarrage
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 # Exposer le port
 EXPOSE 8080
 
-# Lancer plikd avec la configuration
-CMD ["/usr/local/bin/plikd", "--config", "/plikd.cfg"]
+# Lancer le script au démarrage
+CMD ["/start.sh"]
