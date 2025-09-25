@@ -14,7 +14,7 @@ RUN chmod +x /usr/local/bin/plikd
 # Copier le fichier de configuration
 COPY plikd.cfg /plikd.cfg
 
-# Copier la config Plik et rclone
+# Copier les fichiers de configuration
 COPY plikd.cfg /plikd.cfg
 COPY rclone.conf /root/.config/rclone/rclone.conf
 
