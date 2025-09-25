@@ -18,6 +18,13 @@ COPY plikd.cfg /plikd.cfg
 
 # Copier les fichiers de configuration
 COPY plikd.cfg /plikd.cfg
+
+RUN mkdir -p /root/.config/rclone && \
+    echo "[mega]" > /root/.config/rclone/rclone.conf && \
+    echo "type = mega" >> /root/.config/rclone/rclone.conf && \
+    echo "user = ${RCLONE_MEGA_USER}" >> /root/.config/rclone/rclone.conf && \
+    echo "pass = ${RCLONE_MEGA_PASS}" >> /root/.config/rclone/rclone.conf
+
 # Copier le fichier rclone.conf
 COPY rclone.conf /root/.config/rclone/rclone.conf
 
